@@ -19,7 +19,18 @@
    <script>
     const mainTodoELem=document.querySelector(".todo-list-elem");
     const inputValue=document.getElementById("inputValue");
-    
+
+    document.querySelector(".btn").addEventListener("click", (e)=>{
+        addTodoList(e); 
+    }); 
+const addTodoList=(e)=>{
+    e.preventDefault();
+    <!-- console.log("testing") -->
+    const divElement=document.createElement("div");
+    divElement.innerHTML=`<li>${inputValue.value}</li><button class="deleteBtn">Delete</button>`
+mainTodoELem.append(divElement);
+
+}
    </script>
 </body>
 </html>
