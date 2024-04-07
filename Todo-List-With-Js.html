@@ -23,11 +23,19 @@
     document.querySelector(".btn").addEventListener("click", (e)=>{
         addTodoList(e); 
     }); 
-let localTodoList=[];
+
 const getTodoListFromLocal=()=>{
     return JSON.parse(localStorage.getItem("MyTodoList"));
 };  
-localTodoList=getTodoListFromLocal() || [];
+let localTodoList=getTodoListFromLocal() || [];
+
+const addTodoDynamicElement=(curElem)=>{
+    const divElement=document.createElement("div");
+    divElement.innerHTML=`<li>${curElem}</li><button class="deleteBtn">Delete</button>`
+mainTodoELem.append(divElement);
+}
+
+ 
 const addTodoList=(e)=>{
     e.preventDefault();
     const todoListValue=inputValue.value.trim();
@@ -39,13 +47,21 @@ const addTodoList=(e)=>{
     //Now we are going to save data in local storage
     localStorage.setItem("MyTodoList", JSON.stringify(localTodoList));
    
+    addTodoDynamicElement(todoListValue);
+
+}
+//NOW WILL MAKE A FUNCTIO IN WHICH WE WILL SHOW DATA
+ const showTodoList=()=>{
+console.log(localTodoList);
+localTodoList.forEach((curElem)=>{
+   addTodoDynamicElement(curElem);
+}); 
+}
+
+showTodoList();
+  
 
 
-    const divElement=document.createElement("div");
-    divElement.innerHTML=`<li>${inputValue.value}</li><button class="deleteBtn">Delete</button>`
-mainTodoELem.append(divElement);
-
-} 
    </script>
 </body>
 </html>
