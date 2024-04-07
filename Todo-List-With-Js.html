@@ -20,9 +20,7 @@
     const mainTodoELem=document.querySelector(".todo-list-elem");
     const inputValue=document.getElementById("inputValue");
 
-    document.querySelector(".btn").addEventListener("click", (e)=>{
-        addTodoList(e); 
-    }); 
+ 
 
 const getTodoListFromLocal=()=>{
     return JSON.parse(localStorage.getItem("MyTodoList"));
@@ -39,7 +37,7 @@ mainTodoELem.append(divElement);
 const addTodoList=(e)=>{
     e.preventDefault();
     const todoListValue=inputValue.value.trim();
-     
+     inputValue.value=" ";
 
     localTodoList.push(todoListValue);
     localTodoList=[...new Set(localTodoList)];
@@ -59,8 +57,19 @@ localTodoList.forEach((curElem)=>{
 }
 
 showTodoList();
-  
 
+const removeTodoElem=e=>{
+    console.log(e.target);
+}
+
+mainTodoELem.addEventListener("click", (e)=>{
+    e.preventDefault();
+    removeTodoElem(e);
+})
+
+document.querySelector(".btn").addEventListener("click", (e)=>{
+    addTodoList(e); 
+}); 
 
    </script>
 </body>
