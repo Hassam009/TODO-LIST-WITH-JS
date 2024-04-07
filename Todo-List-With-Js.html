@@ -24,15 +24,23 @@
         addTodoList(e); 
     }); 
 let localTodoList=[];
+const getTodoListFromLocal=()=>{
+    return JSON.parse(localStorage.getItem("MyTodoList"));
+};  
+localTodoList=getTodoListFromLocal() || [];
 const addTodoList=(e)=>{
     e.preventDefault();
     const todoListValue=inputValue.value.trim();
+     
+
     localTodoList.push(todoListValue);
     localTodoList=[...new Set(localTodoList)];
     console.log(localTodoList)  
     //Now we are going to save data in local storage
     localStorage.setItem("MyTodoList", JSON.stringify(localTodoList));
-    <!-- console.log("testing") -->
+   
+
+
     const divElement=document.createElement("div");
     divElement.innerHTML=`<li>${inputValue.value}</li><button class="deleteBtn">Delete</button>`
 mainTodoELem.append(divElement);
