@@ -25,6 +25,14 @@
 const getTodoListFromLocal=()=>{
     return JSON.parse(localStorage.getItem("MyTodoList"));
 };  
+
+
+
+
+const addTodoListLocalStorage=(localTodoList)=>{
+return localStorage.setItem("MyTodoList",JSON.stringify(localTodoList))
+}
+
 let localTodoList=getTodoListFromLocal() || [];
 
 const addTodoDynamicElement=(curElem)=>{
@@ -61,19 +69,28 @@ showTodoList();
 const removeTodoElem=(e)=>{
     const todoToRemove=e.target;
     let todoListContent=todoToRemove.previousElementSibling.innerText;
+    let parentElem=todoToRemove.parentElement;
+    
     console.log(todoListContent);
  //NOW WILL TRY TO REMOVE DATA 
  localTodoList=localTodoList.filter((curTodo)=>{
-    return curTodo!= todoListContent.toLowerCase();
- });
-}
+    return curTodo.toLowerCase() !== todoListContent.toLowerCase();
 
+ });
+ 
+addTodoListLocalStorage(localTodoList);
+parentElem.remove();
+}
 
 
 
 mainTodoELem.addEventListener("click", (e)=>{
     e.preventDefault();
-    removeTodoElem(e);
+
+    if(e.target.classList.contains("deleteBtn")){
+        removeTodoElem(e);
+
+    }
 })
 
 document.querySelector(".btn").addEventListener("click", (e)=>{
