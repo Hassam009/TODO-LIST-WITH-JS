@@ -58,11 +58,14 @@ localTodoList.forEach((curElem)=>{
 
 showTodoList();
 
-const removeTodoElem=e=>{
-    console.log(e.target);
+const removeTodoElem=(e)=>{
     const todoToRemove=e.target;
-    let todoListContent=todoToRemove.previousElementSibling;
-    
+    let todoListContent=todoToRemove.previousElementSibling.innerText;
+    console.log(todoListContent);
+ //NOW WILL TRY TO REMOVE DATA 
+ localTodoList=localTodoList.filter((curTodo)=>{
+    return curTodo!= todoListContent.toLowerCase();
+ });
 }
 
 
