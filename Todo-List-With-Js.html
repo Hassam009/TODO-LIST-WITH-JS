@@ -60,7 +60,13 @@ showTodoList();
 
 const removeTodoElem=e=>{
     console.log(e.target);
+    const todoToRemove=e.target;
+    let todoListContent=todoToRemove.previousElementSibling;
+    
 }
+
+
+
 
 mainTodoELem.addEventListener("click", (e)=>{
     e.preventDefault();
